@@ -227,10 +227,10 @@ export default class RedisSocket extends EventEmitter {
     }
 
     disconnect(): void {
+        this.#isOpen = this.#isReady = false;
+
         if (!this.#socket) {
             throw new ClientClosedError();
-        } else {
-            this.#isOpen = this.#isReady = false;
         }
 
         this.#socket.destroy();
